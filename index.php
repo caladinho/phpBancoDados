@@ -22,38 +22,41 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Jogo</a>
+                        <a class="nav-link" href="#">Pacientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?p=list">Usuarios</a>
+                        <a class="nav-link" href="#">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?p=endereco">Endereço</a>
                     </li>
                 </ul>
 
                 <?php if (session_status() != PHP_SESSION_ACTIVE) {
-                    session_start();
+                    session_start(); //comando usado para verificar se a sessao já está aberto, caso não esteja ele vai abrir
                 } ?>
 
-                <?php if (!isset($_SESSION["user"])) : ?>
+                <?php if (!isset($_SESSION["user"])) ://verifica se tem usuario ?> 
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=cadastro">Cadastro</a>
+                            <a class="nav-link" href="#">Cadastro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=entrar">Entrar</a>
+                            <a class="nav-link" href="#">Entrar</a>
                         </li>
                     </ul>
 
-                <?php else : ?>
+                <?php else : //se tiver usuario vai aparecer no menu o nome?>
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=perfil">
+                            <a class="nav-link" href="#">
                                 <?= $_SESSION['user']->nome; ?>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?p=sair">Sair</a>
+                            <a class="nav-link" href="#">Sair</a>
                         </li>
                     </ul>
 
@@ -66,16 +69,8 @@
     <?php
     include("pages/mensagens.php");
     if (isset($_GET['p'])) {
-        if ($_GET['p'] == "cadastro")
-            include("pages/add-usuario.php");
-        if ($_GET['p'] == "list")
-            include("pages/list-usuario.php");
-        if ($_GET['p'] == "entrar")
-            include("pages/login.php");
-        if ($_GET['p'] == "sair")
-            include("pages/logout.php");
-        if ($_GET['p'] == "perfil")
-            include("pages/perfil-usuario.php");
+        if ($_GET['p'] == "endereco")
+            include("pages/addEndereco.php");
     } else {
         include("pages/home.php");
     }
