@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Modelo Site</title>
+    <title>Modelo Site :: Hospital</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilo.css">
 </head>
@@ -28,15 +28,15 @@
                         <a class="nav-link" href="#">Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?p=endereco">Endereço</a>
+                        <a class="nav-link" href="index.php?p=endereco">Endereco</a>
                     </li>
                 </ul>
 
                 <?php if (session_status() != PHP_SESSION_ACTIVE) {
-                    session_start(); //comando usado para verificar se a sessao já está aberto, caso não esteja ele vai abrir
+                    session_start();
                 } ?>
 
-                <?php if (!isset($_SESSION["user"])) ://verifica se tem usuario ?> 
+                <?php if (!isset($_SESSION["user"])) : ?>
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -47,7 +47,7 @@
                         </li>
                     </ul>
 
-                <?php else : //se tiver usuario vai aparecer no menu o nome?>
+                <?php else : ?>
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -70,7 +70,9 @@
     include("pages/mensagens.php");
     if (isset($_GET['p'])) {
         if ($_GET['p'] == "endereco")
-            include("pages/addEndereco.php");
+            include("pages/add-endereco.php");
+        if ($_GET['p'] == "especialidade")
+            include("pages/add-especialidade.php");
     } else {
         include("pages/home.php");
     }
